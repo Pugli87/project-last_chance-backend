@@ -1,5 +1,5 @@
-const service = require("../../service/users");
-const validSchema = require("../../models");
+const service = require("../../service/users/createUser");
+const validSchema = require("../../models/userJoiSchema");
 
 const signUp = async (req, res) => {
 	try {
