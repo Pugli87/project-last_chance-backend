@@ -1,17 +1,11 @@
 // service/test.js
-const { test } = require("../../service");
+const { loginUser }= require("../../service");
 
 const login = async (req, res) => {
   try {
       const { email, password, active } = req.body;
       console.log(email)
-    const { success, result, message } = await test
-      .login
-      // email,
-      // password,
-      // active
-      (email, password);
-
+    const { success, result, message } = await loginUser.login(email, password);
     if (!success) {
       if (message === "Email or password is wrong") {
         return res.status(401).json({
