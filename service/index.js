@@ -1,8 +1,8 @@
 // service/index.js
-const test = require("./test");
+const loginUser = require("./users");
 const products = require("./products");
 
 module.exports = {
 	products,
-	test,
+	loginUser,
 };
