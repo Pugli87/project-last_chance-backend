@@ -1,11 +1,10 @@
-// service/test.js
-const { test } = require("../../service");
+const  loginUser  = require("../../service/index");
 
 const login = async (req, res) => {
   try {
       const { email, password, active } = req.body;
-      console.log(email)
-    const { success, result, message } = await test
+      console.log(email, password)
+    const { success, result, message } = await loginUser
       .login
       // email,
       // password,
