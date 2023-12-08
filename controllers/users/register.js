@@ -5,7 +5,7 @@ const signUp = async (req, res) => {
 	try {
 		const body = req.body;
 		console.log(body);
-		const { error } = validSchema.UserJoy(body);
+		const { error } = validSchema.userJoiValidations(body);
 		if (error !== undefined) {
 			res
 				.status(400)
@@ -19,6 +19,7 @@ const signUp = async (req, res) => {
 			}
 		}
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({
 			result: null,
 			message: error,
