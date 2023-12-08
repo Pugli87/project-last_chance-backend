@@ -1,8 +1,8 @@
 // controllers/index.js
-const test = require("./test");
+const login = require("./users/loginUser");
 const { products } = require("./products");
 
 module.exports = {
   products,
-  test,
+  login,
 };

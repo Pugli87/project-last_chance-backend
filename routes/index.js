@@ -8,5 +8,6 @@ const indexRouter = express.Router();
 module.exports = () => {
 	indexRouter.use("/products", productsRouter);
 	indexRouter.use("/users", usersRouter);
+	indexRouter.use('/auth', auth)
 	return indexRouter;
 };

@@ -13,6 +13,7 @@ mongoose
     // app.listen(PORT, () => {
     app.listen(V.PORT, () => {
       console.log("Database connection successful");
+      console.log(`Server is running on port ${V.PORT}`);
     })
   )
   .catch((error) => {

@@ -10,7 +10,7 @@ const login = async (email, password) => {
       email: "test@test.com",
       // ... otros datos
     };
-
+    console.log(email, password)
     console.log(isUserExist);
     
     // generate the token
