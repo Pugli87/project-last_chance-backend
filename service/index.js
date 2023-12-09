@@ -1,10 +1,10 @@
 // service/index.js
-const test = require("./test");
+const loginUser = require("./users");
 const products = require("./products");
 const listProducts = require("./listProducts");
 
 module.exports = {
 	listProducts,
 	products,
-	test,
+	loginUser,
 };
