@@ -1,3 +1,4 @@
+// routes/products.routes.js
 const express = require("express");
 const controllers = require("../controllers/products");
 // const { validateJWT } = require("../middleware");

@@ -18,7 +18,7 @@ const swaggerOptions = {
         description: "Local server",
       },
       {
-        url: `https://Codekapp.app`,
+        url: `https://Code.app`,
         description: "Production server",
       },
     ],
@@ -33,10 +33,10 @@ const swaggerOptions = {
     },
   },
   apis: [
+    // add routes
     process.cwd() + "/routes/*.js",
     process.cwd() + "/models/*.js",
     process.cwd() + "/controllers/listProducts/*.js",
-    // process.cwd() + "/schemas.js",
   ],
 };
 

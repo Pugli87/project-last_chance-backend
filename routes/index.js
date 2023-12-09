@@ -1,3 +1,4 @@
+// routes/index.js
 const express = require("express");
 const productsRouter = require("./products.routes");
 const auth = require("./user.routes");

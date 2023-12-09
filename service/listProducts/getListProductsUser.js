@@ -1,21 +1,21 @@
-// services\getListProducts.js
-const { ListProducts } = require('../../models');
+// service/listProducts/getListProducts.js
+const { ListProducts } = require("../../models");
 
 const getListProducts = async (query, skip, limit) => {
   try {
-    const contact = await ListProducts.find(query).skip(skip).limit(limit);
+    const product = await ListProducts.find(query).skip(skip).limit(limit);
 
-    if (!contact) {
+    if (!product) {
       return {
         success: false,
         result: null,
-        message: `No contacts found for owner:`,
+        message: `No products found.`,
       };
     }
     return {
       success: true,
-      result: contact,
-      message: `Contacts Found`,
+      result: product,
+      message: `product Found.`,
     };
   } catch (error) {
     return {

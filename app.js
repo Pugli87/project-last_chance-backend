@@ -24,7 +24,7 @@ app.use(
 	})
 );
 
-// Document
+// Document swagger
 app.use("/swagger", swaggerUI.serve, swaggerUI.setup(apiSpecification));
 
 app.use("/api", router());

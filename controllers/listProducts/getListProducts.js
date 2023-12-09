@@ -1,14 +1,24 @@
-const { listProducts: service } = require("../../service");
+// ./controller/listProducts/getListProducts.js
+// const { listProducts: service } = require("../../service");
+const { products: services } = require("../../service");
 
 const getListProducts = async (req, res, next) => {
   try {
-    const owner = req.user.Id;
+    // test eliminar
+    // if (!req.user) {
+    //   req.user = {};
+    // }
+    // req.user.Id = "5d51694902b2373622ff5709";
+
+    // const _id = req.user.Id;
     const { skip, limit } = req.query;
+    // console.log(_id);
 
-    const query = { owner };
+    // const query = { _id };
 
-    const { success, result, message } = await service.getListProducts(
-      query,
+    // const { success, result, message } = await service.getListProducts(
+    const { success, result, message } = await services.getListProducts(
+      //   query,
       skip,
       limit
     );
@@ -31,44 +41,61 @@ const getListProducts = async (req, res, next) => {
 
 module.exports = getListProducts;
 
-
 /**
  * @swagger
- * /api/userProducts/list:
+ * /api/userProducts/list/:
  *   get:
- *     security:
- *       - BearerAuth: []
- *     summary: register a new product
- *     description: register a new product in the user's list.
+ *     summary: List Products
+ *     description: Retrieve a list of products with optional pagination.
  *     tags:
  *       - ListProducts GET
- *     requestBody:
- *       description: List registration details
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *              $ref: '#/components/schemas/SchemaListProducts'
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: skip
+ *         schema:
+ *           type: integer
+ *         description: Number of items to skip. (Optional)
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of items to return. (Optional)
  *     responses:
- *       201:
- *           description: ListProduct registration successful
- *           content:
- *             application/json:
- *               example:
- *                 result: { "List": { "_id": ObjectId(),"idProduct": "5d51694902b2373622ff5726", "owner": "5d51694902b2373622ff5726", "title": "Pan", "weight": "100", "calories": "210", "groupBloodNotAllowed": [ true ] } }
- *                 message: "product successfully added."
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               result:
+ *                 - _id: ObjectId()
+ *                   title: Pan
+ *                   weight: 100
+ *                   calories: 210
+ *                   groupBloodNotAllowed: [true]
+ *                   updatedAt: "2023-01-01T12:00:00Z"
+ *                   createdAt: "2023-01-01T12:00:00Z"
+ *                 - _id: ObjectId()
+ *                   title: Pan
+ *                   weight: 100
+ *                   calories: 210
+ *                   groupBloodNotAllowed: [true]
+ *                   updatedAt: "2023-01-01T12:00:00Z"
+ *                   createdAt: "2023-01-01T12:00:00Z"
+ *               message: Product(s) found.
  *       400:
- *           description: Bad request
- *           content:
- *             application/json:
- *               example:
- *                 result: null
- *                 message: "Product not found)"
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               result: null
+ *               message: "Bad request."
  *       500:
- *           description: Internal server error
- *           content:
- *             application/json:
- *               example:
- *                 result: null
- *                 message: "Internal server error"
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               result: null
+ *               message: "Internal server error."
  */

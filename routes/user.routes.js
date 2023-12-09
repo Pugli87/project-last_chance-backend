@@ -1,3 +1,4 @@
+// routes/user.routes.js
 const express = require("express");
 const controller = require("../controllers/users");
 const usersRouter = express.Router();

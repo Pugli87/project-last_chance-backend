@@ -1,8 +1,7 @@
-const {tokenJWT} = require("../utils");
+const { tokenJWT } = require("../utils");
 
 const login = async (email, password) => {
   try {
-
     // son solo valores de prueba aca deben aparecer los de la consulta a la base de datos
     const isUserExist = {
       _id: "123",
@@ -10,9 +9,9 @@ const login = async (email, password) => {
       email: "test@test.com",
       // ... otros datos
     };
-    console.log(email, password)
+    console.log(email, password);
     console.log(isUserExist);
-    
+
     // generate the token
     const token = tokenJWT.generateToken(isUserExist);
     console.log(token);

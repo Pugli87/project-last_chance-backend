@@ -1,3 +1,4 @@
+// controller/listProducts/postListProducts.js
 const { listProducts: service } = require("../../service");
 
 const postListProducts = async (req, res) => {
@@ -37,12 +38,12 @@ module.exports = postListProducts;
  *   post:
  *     security:
  *       - BearerAuth: []
- *     summary: register a new product
- *     description: register a new product in the user's list.
+ *     summary: Register a new product User
+ *     description: Register a new product in the user's list.
  *     tags:
- *       - POST-Products
+ *       - ListProductsUser POST
  *     requestBody:
- *       description: List registration details
+ *       description: Product details for registration
  *       required: true
  *       content:
  *         application/json:
@@ -54,7 +55,17 @@ module.exports = postListProducts;
  *           content:
  *             application/json:
  *               example:
- *                 result: { "List": { "_id": ObjectId(),"idProduct": "5d51694902b2373622ff5726", "owner": "5d51694902b2373622ff5726", "title": "Pan", "weight": "100", "calories": "210", "groupBloodNotAllowed": [ true ] } }
+ *                 result: {
+ *                   "_id": ObjectId(),
+ *                   "idProduct": "5d51694902b2373622ff5726",
+ *                   "owner": "5d51694902b2373622ff5726",
+ *                   "title": "Pan",
+ *                   "weight": "100",
+ *                   "calories": "210",
+ *                   "groupBloodNotAllowed": [ true ],
+ *                   "updatedAt": "2023-01-01T12:00:00Z",
+ *                   "createdAt": "2023-01-01T12:00:00Z"
+ *                 }
  *                 message: "product successfully added."
  *       400:
  *           description: Bad request
@@ -62,12 +73,12 @@ module.exports = postListProducts;
  *             application/json:
  *               example:
  *                 result: null
- *                 message: "Product not found)"
+ *                 message: "Bad request. Product not added."
  *       500:
  *           description: Internal server error
  *           content:
  *             application/json:
  *               example:
  *                 result: null
- *                 message: "Internal server error"
+ *                 message: "Internal server error."
  */

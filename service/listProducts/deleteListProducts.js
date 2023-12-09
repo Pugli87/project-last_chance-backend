@@ -1,43 +1,37 @@
 // services\deleteListProducts.js
-// const { ListProducts } = require('../../models');
+const { ListProducts } = require("../../models");
 
-const deleteListProducts = async (req, res, next) => {
-	try {
-		console.log(Data);
-		const idProduct = Data.idProduct;
-		// const Data.title = "test"
-	
-		// const listProductUser = await ListProducts.find({
-		// 	idProduct,
-		// });
-		// console.log(listProductUser);
-	
-		if (!idProduct) {
-		  return {
-			success: false,
-			result: null,
-			message: "Product not found",
-		  };
-		}
-	
-		const createdUser = await ListProducts.create({
-		  ...Data,
-		});
-	
-		// console.log("log", createdUser);
-	
-		return {
-		  success: true,
-		  result: createdUser,
-		  message: "Product successfully added.",
-		};
-	  } catch (error) {
-		console.log(error);
-		return {
-		  success: false,
-		  result: null,
-		  message: error,
-		};
-	  }
-	};
+const deleteListProducts = async (_id, owner) => {
+  try {
+    if (!_id) {
+      return {
+        success: false,
+        result: null,
+        message: "Invalid ID",
+      };
+    }
+    const contactDelete = await ListProducts.findByIdAndDelete({ _id, owner });
+
+    if (!contactDelete) {
+      return {
+        success: false,
+        result: null,
+        message: "Contact not found",
+      };
+    }
+
+    return {
+      success: true,
+      result: contactDelete,
+      message: "Product deletion successful",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      result: null,
+      message: error,
+    };
+  }
+};
+
 module.exports = deleteListProducts;

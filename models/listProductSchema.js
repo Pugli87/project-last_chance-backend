@@ -1,4 +1,4 @@
-// models/listProductSchema
+// models/listProductSchema.js
 const { Schema, model } = require("mongoose");
 
 const listProductSchema = Schema(
@@ -10,8 +10,6 @@ const listProductSchema = Schema(
     owner: {
       type: String,
       unique: false,
-      // type: Schema.Types.ObjectId,
-      // ref: "userJoiValidations",
     },
     title: {
       type: String,
@@ -33,6 +31,13 @@ const listProductSchema = Schema(
       unique: false,
       // required: [true, "Set groupBloodNotAllowed for Product"],
     },
+    // createdProduct: {
+    //   type: Date,
+    // default: Date.now,
+    // get: function (updatedAt) {
+    //   return new Date(updatedAt).toLocaleDateString('es-ES');
+    // },
+    // },
   },
   {
     versionKey: false,
@@ -90,4 +95,12 @@ module.exports = {
  *                   type: boolean
  *                 unique: false
  *                 description: Set groupBloodNotAllowed for Product
+ *               createdAt:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Date and time when the product was created
+ *               updatedAt:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Date and time when the product was last updated
  */
