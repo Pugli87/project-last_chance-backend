@@ -3,7 +3,7 @@ const { test } = require("../../service");
 
 const login = async (req, res) => {
   try {
-      const { email, password, active } = req.body;
+      const { email, password, /* active */ } = req.body;
       console.log(email)
     const { success, result, message } = await test
       .login

@@ -1,12 +1,12 @@
 // utils/index.js
-// const { transporter } = require("./nodemailer");
-// const { apiSpecification } = require("./swagger");
+const { transporter } = require("./nodemailer");
+const { apiSpecification } = require("./swagger");
 const variables = require("./variables");
 const tokenJWT = require("./tokenJWT");
 
 module.exports = {
-  // transporter,
-  // apiSpecification,
+  transporter,
+  apiSpecification,
   variables,
   tokenJWT,
 };

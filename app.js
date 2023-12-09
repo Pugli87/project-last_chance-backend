@@ -3,6 +3,9 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
+const { apiSpecification } = require("./utils/swagger");
+const swaggerUI = require("swagger-ui-express");
+
 const router = require("./routes");
 
 const { notFound, errorHandler } = require("./middleware");
@@ -20,6 +23,9 @@ app.use(
 		extended: false,
 	})
 );
+
+// Document
+app.use("/swagger", swaggerUI.serve, swaggerUI.setup(apiSpecification));
 
 app.use("/api", router());
 
