@@ -1,3 +1,5 @@
-const { Product } = require("./product");
+const { Product } = require("./productSchema");
+const { RecommendedCalories } = require("./recommendedCalories");
+const { ListFood } = require("./listFood");
 
-module.exports = { Product };
+module.exports = { Product, RecommendedCalories, ListFood };
