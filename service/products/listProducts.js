@@ -11,6 +11,4 @@ const listProducts = async (skip, limit, favorite, userId) => {
   }
 };
 
-module.exports = {
-  listProducts,
-};
+module.exports = listProducts;
