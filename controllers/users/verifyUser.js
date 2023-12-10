@@ -1,18 +1,10 @@
 // ./controller/listProducts/getListProductsUser.js
-const {loginUser: service} = require("../../service");
-// const service = require("../../service/users/createUser");
+const { loginUser: service } = require("../../service");
+const { emailSender: send } = require("../../utils");
 
 const verifyUser = async (req, res) => {
   try {
-    // const owner = req.user.Id;
-    // console.log('ids', req.params);
-
     const id = req.params.verificationToken;
-    // console.log('id', id);
-
-    // if (!id) {
-    //   id = owner;
-    // }
 
     const { success, result, message } = await service.verifyUser(id);
 
@@ -23,11 +15,24 @@ const verifyUser = async (req, res) => {
       });
     }
 
+    // If it is a browser it is sent and it is different from postman it is sent html
+    if (
+      req.accepts("html") &&
+      !req.get("User-Agent").includes("Postman") &&
+      !req.get("User-Agent").includes("Swagger")
+    ) {
+      const results = await send.sendVerificationEmailHTML(result);
+      res.setHeader("Content-Type", "text/html");
+
+      return res.status(200).send(results);
+    }
+
     return res.status(200).json({
       result,
       message,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       result: null,
       message: error,
@@ -35,9 +40,9 @@ const verifyUser = async (req, res) => {
   }
 };
 
-  module.exports = verifyUser;
+module.exports = verifyUser;
 
-  /**
+/**
  * @swagger
  * /api/users/verify/{verificationToken}:
  *   get:

@@ -74,7 +74,34 @@ const confirmedActivationEmail = async (user) => {
   console.log("Message sent: %s", info.messageId);
 };
 
+const sendVerificationEmailHTML = async (user) => {
+  const { name, email } = user;
+
+  const now = new Date();
+  const fecha = now.toISOString().split("T")[0];
+  const hora = now.toLocaleTimeString();
+
+  // html
+  const htmlTemplate = (
+    await fs.readFile(path.join(__dirname, "../static/html/verifyUser.html"))
+  ).toString();
+
+  // BD
+  const filledHtml = htmlTemplate
+    .replace("{{NameUser}}", name)
+    .replace("{{emailUser}}", email)
+    .replace("{{DateUsers}}", `${fecha} ${hora}`);
+
+  // Configura la respuesta para enviar el archivo HTML
+  // res.setHeader("Content-Type", "text/html");
+  // res = filledHtml;
+
+  // console.log("Message sent: %s", filledHtml);
+  return filledHtml;
+};
+
 module.exports = {
   sendVerificationEmail,
   confirmedActivationEmail,
+  sendVerificationEmailHTML,
 };
