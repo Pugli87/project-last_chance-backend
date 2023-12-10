@@ -1,4 +1,4 @@
-/*Product.find() */
+/* Product.find() */
 const { Product } = require("../../models");
 
 const listProducts = async (skip, limit, favorite, userId) => {
