@@ -26,3 +26,31 @@ const Product = model("Product", productSchema);
 module.exports = {
   Product,
 };
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      SchemaProduct:
+ *          type: object
+ *          properties:
+ *               categories:
+ *                 type: string
+ *                 description: Product category
+ *               weight:
+ *                 type: string
+ *                 description: Product weight
+ *               title:
+ *                 type: string
+ *                 description: Product title
+ *               calories:
+ *                 type: string
+ *                 description: Product calories
+ *               groupBloodNotAllowed:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: List of groups not allowed for the product
+ *          required:
+ *            - title
+ */

@@ -3,7 +3,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const { apiSpecification } = require("./utils/swagger");
+const { apiSpecification } = require("./utils");
 const swaggerUI = require("swagger-ui-express");
 
 const router = require("./routes");
@@ -19,9 +19,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use(
-	express.urlencoded({
-		extended: false,
-	})
+  express.urlencoded({
+    extended: false,
+  })
 );
 
 // Document swagger

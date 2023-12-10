@@ -37,6 +37,8 @@ const swaggerOptions = {
     process.cwd() + "/routes/*.js",
     process.cwd() + "/models/*.js",
     process.cwd() + "/controllers/listProducts/*.js",
+    process.cwd() + "/controllers/products/*.js",
+    process.cwd() + "/controllers/users/*.js",
   ],
 };
 
