@@ -6,7 +6,6 @@ const recommendedCaloriesSchema = new mongoose.Schema({
   altura: { type: Number, required: true },
   edad: { type: Number, required: true },
   pesoDeseado: { type: Number, required: true },
-  // Otras propiedades según sea necesario
 });
 
 const RecommendedCalories = mongoose.model("RecommendedCalories", recommendedCaloriesSchema);

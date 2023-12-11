@@ -1,7 +1,8 @@
+// recommendedCaloriesController.js
+
 const { obtenerDatosUsuario, obtenerListaAlimentosNoRecomendados } = require("../../service/calorias/recommendedCaloriesService");
 
 const calcularIngestaDiaria = (peso, altura, edad, pesoDeseado) => {
-  // Lógica para calcular la ingesta diaria
   return 10 * peso + 6.25 * altura - 5 * edad - 161 - 10 * (peso - pesoDeseado);
 };
 
@@ -25,7 +26,14 @@ const obtenerIngestaDiaria = async (req, res, next) => {
 
 const obtenerAlimentosNoRecomendados = async (req, res, next) => {
   try {
-    const alimentosNoRecomendados = await obtenerListaAlimentosNoRecomendados();
+    const userId = req.params.userId;
+    const usuario = await obtenerDatosUsuario(userId);
+
+    if (usuario.usuarioNoEncontrado) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    const alimentosNoRecomendados = await obtenerListaAlimentosNoRecomendados(usuario.pesoFinal); 
     res.json({ alimentosNoRecomendados });
   } catch (error) {
     console.error("Error en obtenerAlimentosNoRecomendados:", error);
