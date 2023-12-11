@@ -15,7 +15,6 @@ const generateToken = (isUserExist) => {
     },
     SECRET_KEY
   );
-
   return token;
 };
 
