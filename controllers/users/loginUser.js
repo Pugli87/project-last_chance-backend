@@ -1,29 +1,20 @@
-// service/test.js
-const { loginUser }= require("../../service");
+const { loginUser } = require("../../service");
+const validSchema = require('../../models/userJoiSchema')
 
 const login = async (req, res) => {
   try {
-      const { email, password, active } = req.body;
-      console.log(email)
-    const { success, result, message } = await loginUser.login(email, password);
-    if (!success) {
-      if (message === "Email or password is wrong") {
-        return res.status(401).json({
-          result,
-          message,
-        });
+    const body = req.body;
+    const { error } = validSchema.loginJoiValidations(body);
+    if (error !== undefined) {
+      return res.status(400).send({ message: 'Error de Joi u otra biblioteca de validación' });
+    } else {
+      const result = await loginUser.login(body);
+      if (!result) {
+        return res.status(401).send({ message: 'Usuario o contraseña son incorrectos' })
       } else {
-        return res.status(400).json({
-          result,
-          message,
-        });
+        return res.status(200).send(result)
       }
     }
-
-    return res.status(200).json({
-      result,
-      message,
-    });
   } catch (error) {
     return res.status(500).json({
       result: null,
