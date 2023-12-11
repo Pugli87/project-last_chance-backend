@@ -19,12 +19,10 @@ const login = async (data) => {
     }
     const token = tokenJWT.generateToken(isUser);
 
-    await User.findByIdAndUpdate({ email: isUser.email }, { token })
+    await User.findOneAndUpdate({ email: isUser.email }, { token })
     return {
       token,
-      User: {
-        email: isUser.email,
-      }
+      isUser,
     }
   } catch (error) {
     console.log("errp", error);

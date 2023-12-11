@@ -4,7 +4,6 @@ const validSchema = require('../../models/userJoiSchema')
 const login = async (req, res) => {
   try {
     const body = req.body;
-    console.log(req.body)
     const { error } = validSchema.loginJoiValidations(body);
     if (error !== undefined) {
       return res.status(400).send({ message: 'Error de Joi u otra biblioteca de validación' });
