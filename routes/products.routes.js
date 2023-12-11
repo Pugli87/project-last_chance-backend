@@ -1,10 +1,11 @@
+// routes/products.routes.js
 const express = require("express");
-const controllers = require("../controllers/products");
-//const { validateJWT } = require("../middleware");
+const { products:controller } = require("../controllers");
+// const { validateJWT } = require("../middleware");
 
+// const { secureAuthentication } = validateJWT;
 const productsRouter = express.Router();
-//const { secureAuthentication } = validateJWT;
 
-productsRouter.get("/", /*secureAuthentication,*/ controllers.getProducts);
+productsRouter.get("/", /* secureAuthentication, */ controller.getProducts);
 
 module.exports = productsRouter;
