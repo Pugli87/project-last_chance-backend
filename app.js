@@ -3,6 +3,9 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
+const { apiSpecification } = require("./utils");
+const swaggerUI = require("swagger-ui-express");
+
 const router = require("./routes");
 
 const { notFound, errorHandler} = require("./middleware");
@@ -16,10 +19,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use(
-	express.urlencoded({
-		extended: false,
-	})
+  express.urlencoded({
+    extended: false,
+  })
 );
+
+// Document swagger
+app.use("/swagger", swaggerUI.serve, swaggerUI.setup(apiSpecification));
 
 app.use("/api", router());
 

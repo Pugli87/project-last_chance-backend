@@ -1,34 +1,29 @@
-const {tokenJWT} = require("../../utils");
+const { tokenJWT } = require("../../utils");
+const bcrypt = require('bcrypt');
+const User = require('../../models/userSchema')
 
-const login = async (email, password) => {
+const login = async (data) => {
   try {
+    //Valida si el usuario existe
+    const isUser = await User.findOne({
+      email: data.email,
+    })
+    if (!isUser) {
+      return
+    }
 
-    // son solo valores de prueba aca deben aparecer los de la consulta a la base de datos
-    const isUserExist = {
-      _id: "123",
-      name: "John",
-      email: "test@test.com",
-      // ... otros datos
-    };
-    console.log(email, password)
-    console.log(isUserExist);
-    
-    // generate the token
-    const token = tokenJWT.generateToken(isUserExist);
-    console.log(token);
+    //Valida si la contraseña es correcta
+    const isPassword = await bcrypt.compare(data.password, isUser.password);
+    if (!isPassword) {
+      return
+    }
+    const token = tokenJWT.generateToken(isUser);
 
+    await User.findOneAndUpdate({ email: isUser.email }, { token })
     return {
-      success: true,
-      result: {
-        Token: token,
-        User: {
-          _id: isUserExist._id,
-          name: isUserExist.name,
-          email: isUserExist.email,
-        },
-      },
-      message: "Login successfully",
-    };
+      token,
+      isUser,
+    }
   } catch (error) {
     console.log("errp", error);
 
