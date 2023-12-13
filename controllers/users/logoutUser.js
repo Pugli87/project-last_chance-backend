@@ -4,7 +4,7 @@ const User=require("../../models/userSchema")
 const logout = async (req, res) => {
   try {
     console.log("controlers");
-    const user = await User.findOne({ _id: require.user._id });
+    const user = await User.findOne({ _id: req.user._id });
     if (!user) {
       return res.status(401).json({ message: "Not authorized" });
     }
