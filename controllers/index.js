@@ -1,9 +1,11 @@
 // controllers/index.js
-const  login  = require("./users/loginUser");
-const  products  = require("./products");
-const  listProducts  = require("./listProducts");
+const register = require("./users");
+const login = require("./users");
+const products = require("./products");
+const listProducts = require("./listProducts");
 
 module.exports = {
+  register,
   products,
   login,
   listProducts,

@@ -20,7 +20,7 @@ const createUser = async (Data) => {
     const createUser = await User.create(Data);
     console.log("user", createUser);
 
-    await send.confirmedActivationEmail(createUser);
+    // await send.confirmedActivationEmail(createUser);
 
     return createUser;
   } catch (error) {
