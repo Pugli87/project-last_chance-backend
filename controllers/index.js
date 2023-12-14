@@ -3,12 +3,12 @@ const register = require("./users");
 const login = require("./users");
 const products = require("./products");
 const listProducts = require("./listProducts");
-const recommendedCaloriescontroller = require ("./recommendedCaloriescontroller");
+const recommendedCaloriescontroller = require("./calorias");
 
 module.exports = {
-  register,
-  products,
-  login,
-  recommendedCaloriescontroller,
-  listProducts,
+	register,
+	products,
+	login,
+	recommendedCaloriescontroller,
+	listProducts,
 };
