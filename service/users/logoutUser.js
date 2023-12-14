@@ -1,15 +1,12 @@
+const { User } = require("../../models");
+
 const logout = async (_id) => {
 	try {
-		await User.findOneAndUpdate(
-			{ _id },
-			{ $set: { token: null } },
-			{ new: true }
-		);
-
+		await User.findOneAndUpdate({ _id }, { token: null }, { new: true });
 		return {
 			success: true,
 			result: {},
-			message: "",
+			message: "Usuario deslogueado exitosamente.",
 		};
 	} catch (error) {
 		return {

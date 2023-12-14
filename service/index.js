@@ -1,13 +1,14 @@
 // service/index.js
+const createUSer = require("./users");
 const loginUser = require("./users");
+const logoutUser = require("./users");
 const products = require("./products");
 const listProducts = require("./listProducts");
-const logoutUser = require("./users");
-
 
 module.exports = {
+	createUSer,
 	listProducts,
 	products,
 	loginUser,
-	logoutUser
+	logoutUser,
 };
