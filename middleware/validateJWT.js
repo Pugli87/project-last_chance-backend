@@ -14,7 +14,7 @@ const { variables: V } = require("../utils");
 //   );
 // };
 
-const auth = async (req, res, next) => {
+const secureAuthentication = async (req, res, next) => {
   //   const tokenRemove = null;
 
   if (!req.headers.authorization) {
@@ -74,5 +74,5 @@ const auth = async (req, res, next) => {
 };
 
 module.exports = {
-  auth,
+  secureAuthentication,
 };
