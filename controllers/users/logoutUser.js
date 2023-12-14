@@ -1,6 +1,7 @@
 // controllers/authController.js
 //const login = require("../../service/users");
 const User = require("../../models/userSchema");
+
 const logout = async (req, res) => {
 	try {
 		console.log("controlers");

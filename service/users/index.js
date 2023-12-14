@@ -1,4 +1,4 @@
-const createUser = require("./createUser");
+const { createUser } = require("./createUser");
 const { login } = require("./loginUser");
 const verifyUserEmail = require("./verifyUserEmail");
 const verifyUser = require("./verifyUser");
