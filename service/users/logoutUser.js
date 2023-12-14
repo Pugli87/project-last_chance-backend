@@ -1,14 +1,22 @@
-const logout = async (req, res) => {
+const { User } = require("../../models");
 
-  try {
-    return console.log("entra");
- } catch (error) {
-    // Si hay algún error, imprímelo en la consola y devuelve un objeto con éxito falso y mensaje de error
-    console.error('Error al cerrar sesión:', error);
-    return { success: false, message: 'Error al cerrar sesión' };
-  }
+const logout = async (_id) => {
+	try {
+		await User.findOneAndUpdate({ _id }, { token: null }, { new: true });
+		return {
+			success: true,
+			result: {},
+			message: "Usuario deslogueado exitosamente.",
+		};
+	} catch (error) {
+		return {
+			success: false,
+			result: null,
+			message: error,
+		};
+	}
 };
 
 module.exports = {
-  logout,
+	logout,
 };

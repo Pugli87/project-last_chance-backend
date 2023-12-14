@@ -1,6 +1,7 @@
 const express = require("express");
 const { register: controller } = require("../controllers");
 const usersRouter = express.Router();
+const { validateJWT } = require("../middleware");
 const { auth } = require("../middleware");
 
 usersRouter.post("/signup", controller.register);
