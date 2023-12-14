@@ -1,4 +1,7 @@
+const User = require("../../models/userSchema");
+
 const logout = async (_id) => {
+	console.log("Service");
 	try {
 		await User.findOneAndUpdate(
 			{ _id },

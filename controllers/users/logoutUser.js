@@ -1,22 +1,46 @@
 // controllers/authController.js
-//const login = require("../../service/users");
-const User = require("../../models/userSchema");
+const { logoutUser: service } = require("../../service");
+//const User = require("../../models/userSchema");
 
 const logout = async (req, res) => {
+	/*	try {
+		const { success, result, message } = await service.logout(req.user._id);
+		console.log("result:", result);
+		console.log("success:", success);
+		if (!success) {
+			return res.status(401).json({
+				result,
+				message,
+			});
+		}
+
+		return res.status(204).end();
+	} catch (error) {
+		console.log("error:", error);
+		return res.status(500).json({
+			result: null,
+			message: error,
+		});
+	}*/
+
 	try {
-		console.log("controlers");
-		const user = await User.findOneAndUpdate(
-			{ _id: req.user._id },
+		await User.findOneAndUpdate(
+			{ _id },
 			{ $set: { token: null } },
 			{ new: true }
 		);
 
-		if (!user) {
-			return res.status(401).json({ message: "Not authorized" });
-		}
-		res.status(204).send(); // Successful response without content
+		return {
+			success: true,
+			result: {},
+			message: "",
+		};
 	} catch (error) {
-		res.status(500).json({ message: "Internal Server Error" });
+		return {
+			success: false,
+			result: null,
+			message: error,
+		};
 	}
 };
 module.exports = {
