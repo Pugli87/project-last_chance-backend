@@ -1,10 +1,12 @@
 // controllers/index.js
-const { login } = require("./users/loginUser");
-const { products } = require("./products");
-const { recommendedCaloriescontroller } = require("./calorias/recommendedCaloriescontroller");
-const { listProducts } = require("./listProducts");
+const register = require("./users");
+const login = require("./users");
+const products = require("./products");
+const listProducts = require("./listProducts");
+const recommendedCaloriescontroller = require ("./recommendedCaloriescontroller");
 
 module.exports = {
+  register,
   products,
   login,
   recommendedCaloriescontroller,

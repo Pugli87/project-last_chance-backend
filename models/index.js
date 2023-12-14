@@ -1,5 +1,5 @@
 const { Product } = require("./productSchema");
-const { User } = require("./userSchema");
+const User = require("./userSchema");
 const { UserJoi } = require("./userJoiSchema");
 const {ListProducts} = require("./listProductSchema");
 const { RecommendedCalories } = require("./recommendedCalories");

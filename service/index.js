@@ -1,14 +1,14 @@
 // service/index.js
-const recommendedCaloriesService = require("./calorias/recommendedCaloriesService");
+const createUSer = require("./users");
 const loginUser = require("./users");
+const logoutUser = require("./users");
 const products = require("./products");
 const listProducts = require("./listProducts");
-const logoutUser = require("./users");
 
 module.exports = {
-  recommendedCaloriesService,
-  listProducts, 
-  products,
-  loginUser,
-  logoutUser,
+	createUSer,
+	listProducts,
+	products,
+	loginUser,
+	logoutUser,
 };

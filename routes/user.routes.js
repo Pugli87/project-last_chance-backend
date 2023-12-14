@@ -1,12 +1,11 @@
-// routes/user.routes.js
 const express = require("express");
-const controller = require("../controllers/users");
+const { register: controller } = require("../controllers");
 const usersRouter = express.Router();
+const { validateJWT } = require("../middleware");
+const { auth } = require("../middleware");
 
 usersRouter.post("/signup", controller.register);
-usersRouter.post("/log-in", controller.login);
-usersRouter.get("/log-out", controller.logout);
-usersRouter.get("/verify/:verificationToken", controller.verifyUser); // token corre
-usersRouter.post("/verify", controller.verifyUserEmail); // correo
+usersRouter.post("/login", controller.login);
+usersRouter.post("/logout", auth, controller.logout);
 
 module.exports = usersRouter;
