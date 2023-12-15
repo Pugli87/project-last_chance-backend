@@ -1,47 +1,46 @@
 // recommendedCaloriesController.js
 
-const { obtenerDatosUsuario, obtenerListaAlimentosNoRecomendados } = require("../../service/calorias/recommendedCaloriesService");
+const { getUserData, listNotFood } = require("../../service/calories/recommendedCaloriesService");
 
-const calcularIngestaDiaria = (peso, altura, edad, pesoDeseado) => {
-  return 10 * peso + 6.25 * altura - 5 * edad - 161 - 10 * (peso - pesoDeseado);
+const calculateDailyIntake = (peso, altura, edad, pesoDeseado) => {
+  return 10 * peso + 6.25 * peso - 5 * edad- 161 - 10 * (peso - pesoDeseado);
 };
 
-const obtenerIngestaDiaria = async (req, res, next) => {
+const getDailyIntake = async (req, res, next) => {
   const userId = req.params.userId;
 
   try {
-    const usuario = await obtenerDatosUsuario(userId);
+    const user = await getUserData(userId);
 
-    if (usuario.usuarioNoEncontrado) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
+    if (user.userNotFound) {
+      return res.status(404).json({ error: "User not found" });
     }
 
-    const ingestaDiaria = calcularIngestaDiaria(usuario.peso, usuario.altura, usuario.edad, usuario.pesoDeseado);
-    res.json({ ingestaDiaria });
+    const dailyIntake = calculateDailyIntake(user.peso, user.altura, user.edad, user.pesoDeseado);
+    res.json({ dailyIntake });
   } catch (error) {
-    console.error("Error en obtenerIngestaDiaria:", error);
+    console.error("Error in getDailyIntake:", error);
     next(error);
   }
 };
 
-const obtenerAlimentosNoRecomendados = async (req, res, next) => {
+const getNonRecommendedFoods = async (req, res, next) => {
   try {
     const userId = req.params.userId;
-    const usuario = await obtenerDatosUsuario(userId);
+    const user = await getUserData(userId);
 
-    if (usuario.usuarioNoEncontrado) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
+    if (user.userNotFound) {
+      return res.status(404).json({ error: "User not found" });
     }
-
-    const alimentosNoRecomendados = await obtenerListaAlimentosNoRecomendados(usuario.pesoFinal); 
-    res.json({ alimentosNoRecomendados });
+    const nonRecommendedFoods = await listNotFood(user.finalWeight);
+    res.json({ nonRecommendedFoods });
   } catch (error) {
-    console.error("Error en obtenerAlimentosNoRecomendados:", error);
+    console.error("Error in getNonRecommendedFoods:", error);
     next(error);
   }
 };
 
 module.exports = {
-  obtenerIngestaDiaria,
-  obtenerAlimentosNoRecomendados,
+  getDailyIntake,
+  getNonRecommendedFoods,
 };
