@@ -4,7 +4,7 @@ const { UserJoi } = require("./userJoiSchema");
 const { ListProducts } = require("./listProductSchema");
 const ListNotFood = require("./recommendedCalories");
 const ListFood = require("./listFoodSchema");
-
+const { listFoodPrivate } = require("./listFoodSchema");
 module.exports = {
 	Product,
 	User,
@@ -12,4 +12,5 @@ module.exports = {
 	ListProducts,
 	ListNotFood,
 	ListFood,
+    listFood:listFoodPrivate, 
 };
