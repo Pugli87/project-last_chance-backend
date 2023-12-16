@@ -1,7 +1,8 @@
-const { Product } = require("../../models")
+const { Product }  = require("../../models")
+const { service }  = require("../../service/products/listCategories")
 const getCategories = async (req, res) => {
     console.log("products");
-    const categories = req.params.categories;
+    const { categories } = req.params;
     console.log(categories);
     try {
         if (!categories) {

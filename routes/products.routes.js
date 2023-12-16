@@ -8,7 +8,6 @@ const productsRouter = express.Router();
 
 productsRouter.get("/", /* secureAuthentication, */ controller.getProducts);
 
-// Ruta para filtrar productos por categoria
 productsRouter.get("/:categories",controller.getCategories)
 
 module.exports = productsRouter;
