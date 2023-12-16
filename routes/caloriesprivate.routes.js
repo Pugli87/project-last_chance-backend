@@ -1,10 +1,9 @@
-// routes/tusRutas.js
-
 const express = require('express');
 const router = express.Router();
-const caloriesPrivate = require("../controllers/caloriesprivate");
+const caloriesPrivate = require("../controllers/caloriesprivate/caloriesprivate");
+const auth = require("../middleware/auth"); // Importa el middleware de autenticación
 
-// Ruta para obtener la ingesta diaria de calorías y alimentos no recomendados
-router.get("/getDailyIntakeAndNonRecFoods", caloriesPrivate.getDailyIntakeAndNonRecFoods);
+// Ruta protegida que requiere autenticación
+router.get("/getDailyIntakeAndNonRecFoods", auth, caloriesPrivate.getDailyIntakeAndNonRecFoods);
 
 module.exports = router;

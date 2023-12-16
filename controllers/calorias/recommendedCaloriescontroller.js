@@ -1,8 +1,11 @@
 // recommendedCaloriesController.js
 
-const { getUserData, getNonRecommendedFoodList } = require("../../service/calories/recommendedCaloriesService");
+const { getUserData, getNonRecommendedFoodList } = require("../../service/calorias/recommendedCaloriesService");
 
 const calculateDailyIntake = (weight, height, age, desiredWeight) => {
+  if (typeof weight !== "number" || typeof height !== "number" || typeof age !== "number" || typeof desiredWeight !== "number") {
+    throw new Error("Invalid input. All parameters must be numbers.");
+  }
   return 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
 };
 
@@ -45,4 +48,3 @@ module.exports = {
   getDailyCaloricIntake,
   getNonRecommendedFoods,
 };
-

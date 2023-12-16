@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controllers = require("../controllers/calories/recommendedCaloriesController");
+const controllers = require("../controllers/calorias/recommendedCaloriescontroller");
 
 // Route to get daily calorie intake
 router.get("/dailyintake/:userId", controllers.getDailyCaloricIntake);
