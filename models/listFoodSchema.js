@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const listFoodSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  cantidadFinalPeso: { type: Number, required: true },
-  contenidoGrasas: { type: Number },
-  contenidoAzucar: { type: Number },
-  contenidoSodio: { type: Number },
+  name: { type: String, required: true },
+  finalWeightAmount: { type: Number, required: true },
+  fatContent: { type: Number },
+  sugarContent: { type: Number },
+  sodiumContent: { type: Number },
 });
 
 const ListFood = mongoose.model("ListFood", listFoodSchema);

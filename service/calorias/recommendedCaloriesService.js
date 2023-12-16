@@ -3,44 +3,44 @@
 const { ListNotFood } = require("../../models");
 const { ListFood } = require("../../models");
 
-const obtenerDatosUsuario = async (userId) => {
-	try {
-		const usuario = await ListNotFood.findOne({ userId }).exec();
+const getUserData = async (userId) => {
+    try {
+        const user = await ListNotFood.findOne({ userId }).exec();
 
-		if (!usuario) {
-			throw new Error("Usuario no encontrado");
-		}
+        if (!user) {
+            throw new Error("User not found");
+        }
 
-		return {
-			peso: usuario.peso,
-			altura: usuario.altura,
-			edad: usuario.edad,
-			pesoDeseado: usuario.pesoDeseado,
-		};
-	} catch (error) {
-		console.error("Error en obtenerDatosUsuario:", error);
-		throw error;
-	}
+        return {
+            weight: user.weight,
+            height: user.height,
+            age: user.age,
+            desiredWeight: user.desiredWeight,
+        };
+    } catch (error) {
+        console.error("Error in getUserData:", error);
+        throw error;
+    }
 };
 
-const obtenerListaAlimentosNoRecomendados = async (pesoFinal) => {
-	try {
-		const alimentosNoRecomendados = await ListFood.find({
-			recomendado: false,
-			contenidoGrasas: { $gte: 10 },
-			contenidoAzucar: { $gte: 5 },
-			contenidoSodio: { $gte: 500 },
-			// ... otros criterios nutricionales
-		}).exec();
+const getNonRecommendedFoodList = async (finalWeight) => {
+    try {
+        const nonRecommendedFoods = await ListFood.find({
+            recommended: false,
+            fatContent: { $gte: 10 },
+            sugarContent: { $gte: 5 },
+            sodiumContent: { $gte: 500 },
+            // ... other nutritional criteria
+        }).exec();
 
-		return alimentosNoRecomendados;
-	} catch (error) {
-		console.error("Error en obtenerListaAlimentosNoRecomendados:", error);
-		throw error;
-	}
+        return nonRecommendedFoods;
+    } catch (error) {
+        console.error("Error in getNonRecommendedFoodList:", error);
+        throw error;
+    }
 };
 
 module.exports = {
-	obtenerDatosUsuario,
-	obtenerListaAlimentosNoRecomendados,
+    getUserData,
+    getNonRecommendedFoodList,
 };

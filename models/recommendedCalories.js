@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const listNotFoodSchema = new mongoose.Schema({
-	userId: { type: String, required: true, unique: true },
-	peso: { type: Number, required: true },
-	altura: { type: Number, required: true },
-	edad: { type: Number, required: true },
-	pesoDeseado: { type: Number, required: true },
+    userId: { type: String, required: true, unique: true },
+    weight: { type: Number, required: true },
+    height: { type: Number, required: true },
+    age: { type: Number, required: true },
+    desiredWeight: { type: Number, required: true },
 });
 
 const ListNotFood = mongoose.model("ListNotFood", listNotFoodSchema);

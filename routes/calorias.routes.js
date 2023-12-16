@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const controllers = require("../controllers/calorias/recommendedCaloriescontroller");
+const controllers = require("../controllers/calories/recommendedCaloriesController");
 
-// Ruta para obtener la ingesta diaria de calorías
-router.get("/ingestadiaria/:userId", controllers.obtenerIngestaDiaria);
+// Route to get daily calorie intake
+router.get("/dailyintake/:userId", controllers.getDailyCaloricIntake);
 
-// Ruta para obtener la lista de alimentos no recomendados
-router.get("/alimentosnorecomendados", controllers.obtenerAlimentosNoRecomendados);
+// Route to get the list of non-recommended foods
+router.get("/nonrecommendedfoods", controllers.getNonRecommendedFoods);
 
 module.exports = router;
