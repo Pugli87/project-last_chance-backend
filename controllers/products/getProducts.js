@@ -1,10 +1,9 @@
 const { products: service } = require("../../service");
-// const { products: services } = require("../../service");
 
 const getProducts = async (req, res, next) => {
 	try {
-		const { page = 1, limit = 20 } = req.query;
-		const skip = (page - 1) * limit;
+		//const { page = 1, limit = 20 } = req.query;
+		//const skip = (page - 1) * limit;
 		const products = await service.listProducts(/*skip, limit*/);
 
 		if (products) {
