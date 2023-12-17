@@ -8,4 +8,6 @@ const productsRouter = express.Router();
 
 productsRouter.get("/", /* secureAuthentication, */ controller.getProducts);
 
+productsRouter.get("/:categories",controller.getCategories)
+
 module.exports = productsRouter;
