@@ -1,7 +1,7 @@
 // controllers/caloriesprivate.js
 
-const { getUserData, listNotFood } = require("../../service/caloriesprivate/caloriesprivateService");
-const ListFoodPrivate = require("../../models/ListFoodPrivate");
+const { getUserData, listNotFood } = require("./service/caloriesprivate/caloriesprivateService");
+const ListFoodPrivate = require("./models/ListFoodPrivate");
 
 const calcDailyIntake = ({ peso, altura, edad, pesoDeseado }) =>
   10 * peso + 6.25 * altura - 5 * edad - 161 - 10 * (peso - pesoDeseado);

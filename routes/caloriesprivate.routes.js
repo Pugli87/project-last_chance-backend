@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const caloriesPrivate = require("../controllers/caloriesprivate/caloriesprivate");
+const caloriesPrivate = require("../caloriesprivate");
 const auth = require("../middleware/auth"); // Importa el middleware de autenticación
 
 // Ruta protegida que requiere autenticación
