@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const caloriesPrivate = require("../controllers/caloriesprivate/caloriesprivate");
-const auth = require("../middleware/auth"); // Importa el middleware de autenticación
+const auth = require("../middleware/auth"); 
 
-// Ruta protegida que requiere autenticación
-router.get("/lisNotFoodpriv", auth, caloriesPrivate.getDailyIntakeAndNonRecFoods);
+
+router.get("/daily-rate/lisNotFoodpriv", auth, caloriesPrivate.getDailyIntakeAndNonRecFoods);
 
 module.exports = router;
