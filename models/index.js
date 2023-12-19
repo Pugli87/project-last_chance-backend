@@ -1,12 +1,16 @@
-// models/index.js
 const { Product } = require("./productSchema");
 const User = require("./userSchema");
 const { UserJoi } = require("./userJoiSchema");
 const { ListProducts } = require("./listProductSchema");
-
+const ListNotFood = require("./recommendedCalories");
+const ListFood = require("./listFoodSchema");
+const { listFoodPrivate } = require("./listFoodSchema");
 module.exports = {
-  Product,
-  User,
-  UserJoi,
-  ListProducts,
+	Product,
+	User,
+	UserJoi,
+	ListProducts,
+	ListNotFood,
+	ListFood,
+    listFood:listFoodPrivate, 
 };

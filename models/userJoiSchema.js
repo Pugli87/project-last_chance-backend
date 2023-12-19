@@ -19,7 +19,6 @@ const loginJoiValidations = (body) => {
 
 module.exports = {
   userJoiValidations,
-	userJoiValidations,
 	loginJoiValidations,
 };
 
